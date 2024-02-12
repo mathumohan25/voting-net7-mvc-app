@@ -1,0 +1,35 @@
+﻿@using ElectoralSystem.Models.Entities
+@using ElectoralSystem.Models.RequestDtos
+@model NewVotingSessionDto
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Start new voting session</h2>
+        </div>
+    </div>
+    <div class="mt-3">
+        <label asp-for="SelectedStateId" class="control-label"></label>
+        <select asp-for="SelectedStateId" asp-items="new SelectList(Model.StateList, nameof(State.Id),
+                nameof(State.Name),Model.SelectedStateId)">
+            <option value="">Select a State </option>
+        </select>
+    </div>
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary" style="width:150px">Start voting session</button>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="VotingSessions" asp-action="List" class="btn btn-primary" style="width:200px">
+                    Go back
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial.cshtml">
+    </partial>
+}

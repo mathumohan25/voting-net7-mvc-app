@@ -1,0 +1,44 @@
+﻿@using ElectoralSystem.Models.Entities
+@model ElectoralSystem.Models.RequestDtos.AddVoteRequest
+
+@{
+    ViewData["Title"] = "Register My VOTE";
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+<h1>register vote in @Model.StateName</h1>
+
+<h4>Voter</h4>
+<hr />
+<form asp-action="AddVote" method=post>
+    <input type="hidden" asp-for="VoterId" value=@Model.VoterId />
+    <input type="hidden" asp-for="StateName" value=@Model.StateName />
+    @foreach (var option in Model.Candidates)
+    {
+
+        <input type="radio" asp-for=SelectedCandidateId id="SelectedCandidateId" 
+        name="SelectedCandidateId" value="@option.Id"/> 
+        <div>
+        <label asp-asp-for="@option.Name">@option.Name</label>
+        <label asp-asp-for="@option.Party.Name">@option.Party.Name</label>
+            <label asp-asp-for="@option.Party.PartySymbol.SymbolName">@option.Party.PartySymbol.SymbolName</label>
+            </div>
+        @* <div>
+            <label asp-for=@option.>@option.Party.Name</label>
+            <span aria-labelledby="@option.Id">@option.Party.PartySymbol.SymbolName</span>
+            <span aria-labelledby="@option.Id">@option.Name</span>
+             </div> *@
+
+        
+    }
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+
+<div>
+    <a asp-action="Index" asp-route-id=@id>Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

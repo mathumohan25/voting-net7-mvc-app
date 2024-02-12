@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+    <a asp-action="Register" asp-route-id=@id>Register</a>
+</div>
+<div>
+    <a asp-action="Details" asp-route-id=@id>Details</a>
+</div>
+<div>
+    <a asp-action="AddVote" asp-route-id=@id>Register my vote</a>
+</div>

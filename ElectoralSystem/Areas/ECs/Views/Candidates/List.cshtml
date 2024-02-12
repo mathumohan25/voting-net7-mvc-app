@@ -1,0 +1,63 @@
+﻿@using ElectoralSystem.Models.Entities
+@model IEnumerable<Candidate>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Candidates</h2>
+        </div>        
+    </div>
+</div>
+
+<table class="table" table-bordered table-striped style="width:100%">
+    <thead>
+        <tr>
+            <th scope ="col">
+                Name
+            </th>
+            <th scope="col">
+                Party Name
+            </th> 
+            <th scope="col">
+                State Name
+            </th>
+            <th scope="col"/>
+            <th scope="col"/>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model)
+        {
+            <tr class="table-primary">
+                <td width=25% class="mt-2 pt-5">@obj.Name</td>
+                <td width=25% class="mt-2 pt-5">@obj.Party.Name</td>
+                <td width=25% class="mt-2 pt-5">@obj.State.Name</td>
+                <td width="12%">
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Candidates" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-secondary">
+                        <i class="bi bi-pencil-square"></i> &nbsp; Edit
+                       </a>                    
+                    </div>
+                </td>
+                <td width="12%">
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Candidates" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-secondary">
+                            <i class="bi bi-pencil-square"></i> &nbsp; Delete
+                        </a>
+                    </div>
+                </td>
+        </tr>       
+        }
+    </tbody>
+</table>
+<div class="col-6 text-end">
+    <a asp-controller="Candidates" asp-action="AddNew" class="btn btn-primary" style="width:200px">
+        Add New Entry
+    </a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary" style="width:200px">
+        Go Home
+    </a>
+</div>
+

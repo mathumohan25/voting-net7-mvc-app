@@ -1,0 +1,125 @@
+﻿@using ElectoralSystem.Models.Entities
+@model IEnumerable<VotingSession>
+@{
+    ViewData["Title"] = "List";
+}
+
+
+@if(Model.Count() == 0)
+{
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">No Voting sessions</h2>
+            </div>
+        </div>
+    </div>
+
+}
+@if(Model.Count() > 0)
+{
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">On-Going Voting sessions</h2>
+        </div>
+    </div>
+</div>
+<table class="table" table-bordered table-striped style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">
+                Voting Session ID
+            </th>            
+            <th scope="col">
+                Voting session State
+            </th>
+            <th scope="col">
+                Start Date
+            </th>
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            @if (!obj.IsCompleted)
+            {
+                <tr class="table-primary">
+                    <td width=25% class="mt-2 pt-5">@obj.Id</td>                
+                <td width=25% class="mt-2 pt-5">@obj.State.Name</td>
+                <td width=25% class="mt-2 pt-5">@obj.StartDate</td>
+                <td width="25%">
+                    <div class="w-75 btn-group" role="group">
+                                <form method="post" asp-controller="VotingSessions" asp-action="Stop" asp-route-id="@obj.Id">
+                                    <input type="hidden" asp-for="@obj.Id" />
+                                    <button type="submit" class="btn btn-primary" style="width:150px">Stop</button>
+                           @*  <a class="btn btn-secondary">
+                            <i class="bi bi-pencil-square"></i> Stop                           
+                        </a> *@
+                                </form>
+                    </div>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+<hr/>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Completed Voting sessions</h2>
+        </div>
+    </div>
+</div>
+
+<table class="table" table-bordered table-striped style="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">
+                Voting Session ID
+            </th>
+            <th scope="col">
+                Voting session State
+            </th>
+            <th scope="col">
+                Start Date
+            </th>
+            <th scope="col">
+                End Date
+            </th>
+            <th scope="col" />
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            @if (obj.IsCompleted)
+            {
+                <tr class="table-primary">
+                    <td width=18% class="mt-2 pt-5">@obj.Id</td>
+                    <td width=18% class="mt-2 pt-5">@obj.State.Name</td>
+                    <td width=18% class="mt-2 pt-5">@obj.StartDate</td>
+                    <td width=18% class="mt-2 pt-5">@obj.StartDate</td>
+                    <td width="28%">
+                        <div class="w-75 btn-group" role="group">                           
+                            <a asp-controller="VotingSessions" asp-action="Result" asp-route-id="@obj.Id" class="btn btn-secondary">
+                                <i class="bi bi-pencil-square"></i> View Results
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+}
+<div class="col-6 text-end">
+    <a asp-controller="VotingSessions" asp-action="Start" class="btn btn-primary" style="width:200px">
+        Start New Session
+    </a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary" style="width:200px">
+        Go Home
+    </a>
+</div>

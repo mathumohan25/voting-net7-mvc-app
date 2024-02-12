@@ -1,0 +1,86 @@
+﻿@model ElectoralSystem.Models.Entities.VotingSession
+
+@{
+    ViewData["Title"] = " Details";
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+<h1>Index</h1>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Voting session Details</h2>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tbody>
+        <tr class="table-primary">
+            <td width=25% class="mt-2 pt-5">
+                Session ID
+            </td>
+             <td width=25% class="mt-2 pt-5">
+                @Model.Id
+            </td>
+        </tr>
+        <tr class="table-primary">
+             <td width=25% class="mt-2 pt-5">
+                Session Start Date
+            </td>
+             <td width=25% class="mt-2 pt-5">
+                @Model.StartDate
+            </td>
+        </tr>
+        <tr class="table-primary">
+             <td width=25% class="mt-2 pt-5">
+                Session Start Date
+            </td>
+             <td width=25% class="mt-2 pt-5">
+                @Model.EndDate
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+@if (Model.Result != null)
+{
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Candidate vote results</h2>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Candidate Name
+                </th>
+                <th scope="col">
+                    Candidate Party
+                </th>
+                <th scope="col">
+                    Candidate Party Symbol
+                </th>
+                <th scope="col">
+                    Candidate Votes Count
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Result.CandidateResults)
+            {
+                <tr class="table-primary">
+                    <td width=25% class="mt-2 pt-5">@obj.Name</td>
+                    <td width=25% class="mt-2 pt-5">@obj.PartyName</td>
+                    <td width=25% class="mt-2 pt-5">@obj.PartySymbol</td>
+                    <td width=25% class="mt-2 pt-5">@obj.VotesCountResult</td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<div>
+    <a asp-action="List">Back to List</a>
+</div>

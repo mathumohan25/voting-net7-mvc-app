@@ -1,0 +1,17 @@
+﻿<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<style src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"></style>
+
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-dismissible alert-success">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" fdprocessedid="uooqo4"></button>
+        <strong>@TempData["success"]</strong>
+    </div>
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" fdprocessedid="zl2d5"></button>
+        <strong>@TempData["error"]</strong>
+    </div>
+}

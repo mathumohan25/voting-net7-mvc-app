@@ -1,0 +1,77 @@
+﻿@using ElectoralSystem.Models.Entities
+@model ElectoralSystem.Models.RequestDtos.NewVoterDto
+
+@{
+    ViewData["Title"] = "Create";
+    var id = ViewContext.RouteData.Values["id"];
+}
+
+<h1>Register</h1>
+
+<h4>Voter</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>  
+            <div class="form-group">
+                <label asp-for="VoterId" class="control-label"></label>
+                <input asp-for="VoterId" class="form-control" />
+                <span asp-validation-for="VoterId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AddressLine" class="control-label"></label>
+                <input asp-for="AddressLine" class="form-control" />
+                <span asp-validation-for="AddressLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedStateId" class="control-label"></label>
+                <select asp-for="SelectedStateId" asp-items="new SelectList(Model.StateList, nameof(State.Id), nameof(State.Name),
+                            Model.SelectedStateId)">
+                    <option value="">Select a State</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id=@id>Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
