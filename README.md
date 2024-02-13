@@ -7,6 +7,11 @@ YourInitialAdminPassword
 mathu@example.com
 Hell0W0rld123$
 
+
+Required runtimes
+.net 7 runtime
+.net 7 aspnet runtime
+
 This application is created with the following tools, due to time constraint cant move to sqllite db
 1) EFCore
 2) Microsoft.aspnet.core Identity (To switch between different actions and differentiate voter and election commisioner)
