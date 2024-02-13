@@ -15,8 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-string connString = "Server=DESKTOP-1CO21O5\\SQLEXPRESS;Database=sample4;Trusted_Connection=True;TrustServerCertificate=True;";
+string connString = "Server=tcp:mathufree.database.windows.net,1433;Database=sample;User ID=msadmin;Password=$Adm@12345;Trusted_Connection=False;Encrypt=True;";
+//string connString = "Server=mathufree.database.windows.net;Database=sample;Trusted_Connection=True;TrustServerCertificate=True;";
 //string connString = "Data Source = mydatabase.db";
 //builder.Services.AddDbContext<ElectionDbContext>(options =>
 //                options.UseSqlite(connString, b => b.MigrationsAssembly("ElectoralSystem")));
